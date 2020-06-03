@@ -34,21 +34,23 @@ App({
   },
   // globalData是定义整个项目的全局变量或者常量
   globalData: {
+    userInfo:null,
+    host:'https://localhost:8443/test-weappservice/api/v1',
+    // server: 'https://localhost:8443/weappservice/api/v1',
+    appId: 'wxf7403466434f62ee',
+    lastStartTime: new Date(),
     defaultCity: '',
     defaultCounty: '',
     weatherData: '',
     air: '',
     day: '',
-    g_isPlayingMusic: false,
-    g_currentMusicPostId: null,
     // 腾讯位置服务https://lbs.qq.com/webApi/uriV1/uriGuide/uriWebMarker
     apiMap:"https://apis.map.qq.com",
     heWeatherBase: "https://free-api.heweather.com",// 和风天气API
-    juhetoutiaoBase:"https://v.juhe.cn/toutiao/index",
-    tencentMapKey: "4HYBZ-EB23D-SLC42-HQ5R3-LP3LQ-OZFU5",
+    juhetoutiaoBase:"https://v.juhe.cn/toutiao/index",///聚合数据
+    tencentMapKey: "4HYBZ-EB23D-SLC42-HQ5R3-LP3LQ-OZFU5",//腾讯地图key
     heWeatherKey: "25bfed385c0f4646ab316f10e7a2f4fc",//注册和风天气创建免费应用key
-    juhetoutiaoKey:"a9f703a0200d68926f707f3f13629078",
-    curBook: ""
+    juhetoutiaoKey:"a9f703a0200d68926f707f3f13629078"//聚合数据key
   }
 
 })

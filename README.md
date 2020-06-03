@@ -146,5 +146,14 @@ http://www.wxapp-union.com/portal.php  </br>
 （6）极乐小程序商店</br>
 http://store.dreawer.com/  </br>
 
+## 目录结构
+components 组件
+assets 公共样式和方法库
+lib 第三方库
+utils 自己帮助库 工具包
+packageA 子包 a
+packageA 子包 b
+
+
  
 
