@@ -2,12 +2,9 @@
   "pages": [
     "pages/welcome/welcome",
     "pages/index/index",
-    "pages/movies/movies",
     "pages/switchcity/switchcity",
     "pages/weather/weather",
     "pages/news/news",
-    "pages/movies/movie-detail/movie-detail",
-    "pages/movies/more-movie/more-movie",
     "pages/map/map",
     "pages/more/more"
   ],

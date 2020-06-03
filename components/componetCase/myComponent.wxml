@@ -1,0 +1,5 @@
+<!--pages/component/myComponent.wxml-->
+<view class="button-class">
+<image class='img-style' src='../../img/baoxian.png'></image>
+ <text class='text-style'>{{innerText}}</text>
+</view>

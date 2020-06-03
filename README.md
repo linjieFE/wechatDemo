@@ -3,12 +3,9 @@
 "pages": [
     "pages/welcome/welcome",
     "pages/index/index",
-    "pages/movies/movies",
     "pages/switchcity/switchcity",
     "pages/weather/weather",
     "pages/news/news",
-    "pages/movies/movie-detail/movie-detail",
-    "pages/movies/more-movie/more-movie",
     "pages/map/map",
     "pages/logs/logs",
     "pages/more/more"
@@ -146,6 +143,13 @@ http://www.wxapp-union.com/portal.php  </br>
 （6）极乐小程序商店</br>
 http://store.dreawer.com/  </br>
 
+
+## 支付解密
+- 打开 assets/js/demo.js 查看解密demo
+
+```
+node demo.js
+```
 ## 目录结构
 components 组件
 assets 公共样式和方法库

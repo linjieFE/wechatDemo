@@ -1,0 +1,16 @@
+/* pages/component/myComponent.wxss */
+.inner {
+  color: red;
+}
+.button-class{
+  text-align: center;
+}
+.img-style{
+  width: 44px;
+  height: 44px;
+}
+.text-style{
+  display: block;
+  color: #565756 ;
+  font-size: 13px;
+}

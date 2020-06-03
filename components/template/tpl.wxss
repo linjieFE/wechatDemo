@@ -13,13 +13,13 @@
 
 .stars image {
   padding-left: 3rpx;
-  height: 17rpx;
-  width: 17rpx;
+  height: 28rpx;
+  width: 28rpx;
 }
 
 .starScore{
    color: #ea2000;
 }
 .starScoreNull{
-  font-size: 18rpx;
+  font-size: 28rpx;
 }

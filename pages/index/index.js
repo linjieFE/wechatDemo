@@ -1,11 +1,19 @@
 var app = getApp();
 var util = require('../../utils/util');
+var api = require('../../assets/js/api')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    //components 数据
+    items:[
+      { name: "电动车租赁" },
+      { name: "劳保用品" },
+      { name: "保险购买" },
+      { name: "消费借款" }
+    ],
     location: '',
     county: '',
     sliderList: [
@@ -14,8 +22,14 @@ Page({
       { selected: false, imageSource: 'http://pic1.win4000.com/wallpaper/9/538544be6ae36.jpg' },
     ],
     today: "",
-    inTheaters: {},
-    // containerShow: true,
+    inTheaters: {
+      stars:[
+        { score:'0'},
+        { score:'0'}
+      ],
+      score:'0'
+    },
+    containerShow: true,
     weatherData: '',
     air: '',
     dress: ''
@@ -47,50 +61,6 @@ Page({
 
   },
 
-  //调用豆瓣api
-  // getMovieListData: function (url, settedKey, categoryTitle) {
-  //   wx.showNavigationBarLoading()
-  //   var that = this;
-  //   wx.request({
-  //     url: url,
-  //     method: 'GET',
-  //     header: {
-  //       "Content-Type": "json"
-  //     },
-  //     success: function (res) {
-  //       that.processDoubanData(res.data, settedKey, categoryTitle)
-  //     },
-  //     fail: function (error) {
-  //       console.log(error)
-  //     }
-  //   })
-  // },
-  //获得电影数据后的处理方法
-  // processDoubanData: function (moviesDouban, settedKey, categoryTitle) {
-  //   var movies = [];
-  //   for (var idx in moviesDouban.subjects) {
-  //     var subject = moviesDouban.subjects[idx];
-  //     var title = subject.title;
-  //     if (title.length >= 6) {
-  //       title = title.substring(0, 6) + "...";
-  //     }
-  //     var temp = {
-  //       stars: util.convertToStarsArray(subject.rating.stars),
-  //       title: title,
-  //       average: subject.rating.average,
-  //       coverageUrl: subject./assets/images.large,
-  //       movieId: subject.id
-  //     }
-  //     movies.push(temp)
-  //   }
-  //   var readyData = {};
-  //   readyData[settedKey] = {
-  //     categoryTitle: categoryTitle,
-  //     movies: movies
-  //   }
-  //   this.setData(readyData);
-  //   wx.hideNavigationBarLoading();
-  // },
 
   //定位当前城市
   getLocation: function () {
@@ -101,18 +71,30 @@ Page({
         //当前的经度和纬度
         let latitude = res.latitude
         let longitude = res.longitude
-        wx.request({
-          url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`,
-          success: res => {
-            app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.data.result.ad_info.city;
-            app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.data.result.ad_info.district;
+        // wx.request({
+        //   url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`,
+        //   success: res => {
+        //     app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.data.result.ad_info.city;
+        //     app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.data.result.ad_info.district;
+        //     that.setData({
+        //       location: app.globalData.defaultCity,
+        //       county: app.globalData.defaultCounty
+        //     });
+        //     that.getWeather();
+        //     that.getAir();
+        //   }
+        // })
+        api.gets( `${app.globalData.apiMap}/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`, {}).then(res=>{
+          app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.result.ad_info.city;
+            app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.result.ad_info.district;
             that.setData({
               location: app.globalData.defaultCity,
               county: app.globalData.defaultCounty
             });
             that.getWeather();
             that.getAir();
-          }
+        }).catch(err=>{
+          console.log("出现错误")
         })
       }
     })
@@ -130,6 +112,7 @@ Page({
       location: city
     };
     //发出请求
+    
     wx.request({
       url: app.globalData.heWeatherBase + "/s6/weather",
       data: param,

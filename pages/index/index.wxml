@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <!-- 顶部导航条 -->
-<!-- <import src="../movies/movie-list/movie-list-template.wxml" /> -->
-<!-- <import src="../movies/movie-grid/movie-grid-template.wxml" /> -->
+<import src="../../components/template/tpl.wxml" /> 
+
 <view class='customSwiper'>
   <swiper class='banner' autoplay='true' interval='5000' duration='300' bindchange='switchTab'>
     <block wx:for="{{sliderList}}" wx:key="key">
@@ -43,9 +43,19 @@
       <view class="life" style='text-indent:1em;'>{{dress.txt}}</view>
     </view>
   </view>
-  <!-- <view class="container" wx:if="{{containerShow}}">
-    <view class="movies-template">
-      <template is="movieListTemplate" data="{{...inTheaters}}" />
+  <!--组件-->
+  <view class="bottom-view-middle">
+    <view class='bottom-view-more-service'>更多服务</view>
+    <view class='button-group'>
+      <block wx:for="{{items}}" wx:key="index">
+        <my-component inner-text="{{item.name}}"> </my-component>
+      </block>
     </view>
-  </view> -->
+  </view>
+  <!--模板-->
+  <view wx:if="{{containerShow}}">
+    <view class="movies-template">
+      <template is="starsTemplate" data="{{...inTheaters}}" />
+    </view>
+  </view> 
 </view>

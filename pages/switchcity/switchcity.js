@@ -1,7 +1,6 @@
 const city = require('../../utils/util.js');
 const app = getApp();
 Page({
-
   data: {
     searchLetter: [],
     showLetter: "",
