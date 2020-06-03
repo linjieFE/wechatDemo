@@ -1,0 +1,16 @@
+<view class="container">
+  <view  bindtap="clickLogo" class="userinfo" >
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <view class="usermotto"  hover-class="hover">{{motto}}</view>
+
+    <van-row type="flex" gutter="20" justify="center">
+      <van-col span="12">
+        <van-button catchtap="bindNext"  size="small" type="info">子包A</van-button>
+      </van-col>
+      <van-col span="12">
+        <van-button catchtap="bindNext2"  size="small" type="info">子包B</van-button>
+      </van-col>
+    </van-row>
+  </view>
+</view>

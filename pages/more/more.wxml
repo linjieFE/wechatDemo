@@ -1,0 +1,24 @@
+<view class='moreTab'>
+  <view class="{{selsectState[0]?'moreSelected':''}}" bindtap='clickDict'>
+    <image class="icon-image" src="../../assets/images/cidian.png"/>
+    <view class='tabText'>词典</view>   
+  </view>
+  <view class="{{selsectState[1]?'moreSelected':''}}" bindtap='clickExpre'>
+    <image class="icon-image" src="../../assets/images/kuaidi.png"/>
+    <view class='tabText'>快递</view>
+  </view>
+  <view class="{{selsectState[2]?'moreSelected':''}}" bindtap='clickMore'>
+    <image class="icon-image" src="../../assets/images/more.png"/>
+    <view class='tabText more'>敬请期待...</view>
+  </view>
+</view>
+
+<view class="more_container"> 
+  <view wx:if="{{selectIndex}}">
+    <image class="conImage" src="../../assets/images/more/more{{selectIndex}}.png"/>
+  </view>
+</view> 
+<view> 
+
+</view> 
+
