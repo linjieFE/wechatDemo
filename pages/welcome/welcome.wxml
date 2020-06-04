@@ -8,12 +8,12 @@
       中断onCancel
       小程序页面销毁时会执行 onUnload方法 -->
     <view class="usermotto" hover-class="hover"
-      catchlongtap="mylongtap"
-      catchtap="mytap" 
-      catchlongpress="mylongtap" 
-      catchtouchstart="mytouchstart"
-      catchtouchmove="mytouchmove" 
-      catchtouchcancel="mytouchcacel">
+      bindlongtap="mylongtap"
+      bindtap="mytap" 
+      bindlongpress="mylongtap" 
+      bindtouchstart="mytouchstart"
+      bindtouchmove="mytouchmove" 
+      bindtouchcancel="mytouchcacel">
       {{motto}}
     </view>
 
