@@ -1,6 +1,9 @@
 <!--logs.wxml-->
 <view class="container log-list">
-  <block wx:for="{{logs}}" wx:for-item="log" wx:key="index">
-    <text class="log-item">{{index + 1}}. \t {{log}}\n</text>
-  </block>
+  <button bindtap="clearStorageSync">清除本地日志</button>
+  <view wx:if="{{logs}}">
+    <block wx:for="{{logs}}" wx:for-item="log" wx:key="index">
+      <text class="log-item">{{index + 1}}. \t {{log}}\n</text>
+    </block>
+  </view>
 </view>

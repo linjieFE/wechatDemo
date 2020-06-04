@@ -2,6 +2,11 @@
   <view  bindtap="clickLogo" class="userinfo" >
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <!--
+      打开小程序后会依次执行onLoad，onReady和onShow方法
+      前后台切换会分别执行onHide和onShow方法，
+      中断onCancel
+      小程序页面销毁时会执行 onUnload方法 -->
     <view class="usermotto" hover-class="hover"
       catchlongtap="mylongtap"
       catchtap="mytap" 

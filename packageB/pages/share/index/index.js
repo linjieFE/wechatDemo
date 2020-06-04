@@ -13,9 +13,9 @@ Page({
     })
   },
   bindNext:function(){
-    //这里用navigateTo 会报错 超过限制的数量导致的，navigationTo会保留当前页，当保留页数超过上线了就会报错，跳转页数多时不防尝试redirectTo
-    wx.reLaunch({
-      url: '../../../../pages/welcome/welcome.js  '
+    //navigateTo超过限制的数量导致的，navigationTo会保留当前页，当保留页数超过上线了就会报错，跳转页数多时不防尝试redirectTo
+    wx.redirectTo({
+      url:'../../../../pages/welcome/welcome'
     })
   },
   onLoad: function () {
