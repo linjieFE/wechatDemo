@@ -39,6 +39,5 @@
   margin:0 0 0 90rpx;
 }
 .mapSelected{
-  border: 1px #2a579a solid;
-  border-radius: 20%;
+  border-bottom: 2px #2a579a solid;
 }

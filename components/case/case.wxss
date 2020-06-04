@@ -1,0 +1,24 @@
+/* components/case/case.wxss */
+.button-group{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}/* pages/component/myComponent.wxss */
+.inner {
+  color: red;
+}
+.button-class{
+  text-align: center;
+  padding:28rpx;
+}
+.img-style{
+  width: 44px;
+  height: 44px;
+  word-break: break-all;
+}
+.text-style{
+  display: block;
+  color: #565756 ;
+  font-size: 13px;
+}

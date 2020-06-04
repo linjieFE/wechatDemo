@@ -1,0 +1,13 @@
+ <view class='button-group'>
+    <block wx:for="{{innerList}}" wx:key="{{index}}" >
+      <!-- 子传父 bind+自定义事件="回调函数" -->
+        <view class="button-class" catchtap="customMethod"  data-index="{{index}}" >
+          <view><image class='img-style' src='../../assets/images/baoxian.png'></image></view>
+          <text class='text-style'  class="{{item.active?'inner':''}}">{{item.name}}</text>
+        </view>
+      </block>
+</view>
+  <view>
+      <!-- 点位符插槽 等父组件调用子的时候再传弟过来。最终这些被传递过来的标签会替换插槽位置 -->
+      <slot></slot>
+  </view>

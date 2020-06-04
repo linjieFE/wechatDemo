@@ -43,19 +43,32 @@
       <view class="life" style='text-indent:1em;'>{{dress.txt}}</view>
     </view>
   </view>
-  <!--组件-->
-  <view class="bottom-view-middle">
-    <view class='bottom-view-more-service'>更多服务</view>
-    <view class='button-group'>
-      <block wx:for="{{items}}" wx:key="index">
-        <my-component inner-text="{{item.name}}"> </my-component>
-      </block>
-    </view>
-  </view>
   <!--模板-->
   <view wx:if="{{containerShow}}">
     <view class="movies-template">
       <template is="starsTemplate" data="{{...inTheaters}}" />
     </view>
-  </view> 
+  </view>
+
+  <!--组件-->  
+  <view class="bottom-view-middle">
+    <view class='bottom-view-more-service'>更多服务</view>
+    <view class='button-group'>
+      <my-case  inner-list="{{items}}" binditemChange="hanlerItemChange">
+        <view wx:if="{{items[0].actice}}">1111</view>
+        <view wx:elif="{{items[1].actice}}">2222</view>
+        <view wx:elif="{{items[2].actice}}">3333</view>
+        <view class="fc" wx:elif="{{items[3].actice}}">4444</view>
+        <view class="fc" wx:else>暂无内容</view>
+      </my-case>
+      <!-- 子传父 bind+自定义事件="回调函数" -->
+      <!-- <block wx:for="{{items}}" wx:key="index">
+        <my-component 
+          inner-text="{{item.name}}" 
+          inner-list="{{items}}" 
+          binditemChange="hanlerItemChange">
+        </my-component>
+      </block> -->
+    </view>
+  </view>
 </view>

@@ -1,5 +1,8 @@
 <!--pages/component/myComponent.wxml-->
 <view class="button-class">
-<image class='img-style' src='../../img/baoxian.png'></image>
+ <image class='img-style' src='../../assets/images/baoxian.png'></image>
  <text class='text-style'>{{innerText}}</text>
+ <view wx:for="{{innerList}}" wx:key="{{index}}">
+  <text class='text-style'  catchtap="customMethod" data-index="{{index}}" class="{{item.active?'inner':''}}">{{index}}</text>
+ </view>
 </view>

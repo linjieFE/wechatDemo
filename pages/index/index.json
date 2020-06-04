@@ -1,6 +1,7 @@
 {
     "usingComponents":{
-      "my-component":"../../components/componetCase/myComponent"
+      "my-component":"../../components/componetCase/myComponent",
+      "my-case":"../../components/case/case"
     },
     "navigationBarTitleText": "首页"
   }

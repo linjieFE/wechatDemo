@@ -62,7 +62,7 @@ margin-right:10px;}
   margin-top: 10rpx;
   color:  #666;
   font-size:15px;
-  background-color:#f5f5f5;
+  background-color:cornsilk;
 }
 /*当天天气信息*/
 .info{
@@ -123,4 +123,8 @@ margin-right:10px;}
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.fc{
+  color:blue
 }

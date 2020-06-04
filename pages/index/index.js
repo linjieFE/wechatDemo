@@ -9,17 +9,17 @@ Page({
   data: {
     //components 数据
     items:[
-      { name: "电动车租赁" },
-      { name: "劳保用品" },
-      { name: "保险购买" },
-      { name: "消费借款" }
+      { name: "电动车租赁",active:true},
+      { name: "劳保用品", active:false},
+      { name: "保险购买", active:false},
+      { name: "消费借款", active:false }
     ],
     location: '',
     county: '',
     sliderList: [
-      { selected: true, imageSource: 'http://up.enterdesk.com/edpic/7d/35/13/7d3513ecabdf1f7eb4f1407f0e82f23c.jpg' },
-      { selected: false, imageSource: 'http://pic1.win4000.com/wallpaper/9/538544be6ae36.jpg' },
-      { selected: false, imageSource: 'http://pic1.win4000.com/wallpaper/9/538544be6ae36.jpg' },
+      { selected: true, imageSource: 'https://zxr.gdjr.gd.gov.cn/newsimages/f38566acc57d4edf94ef7ee183a276dc.jpg' },
+      { selected: false, imageSource: 'https://zxr.gdjr.gd.gov.cn/newsimages/671275fd59b64a9a9f9cd4b4b020e554.png' },
+      { selected: false, imageSource: 'https://zxr.gdjr.gd.gov.cn/newsimages/03e2efbbafb94ccc9bcaec6b3bf15f18.jpg' },
     ],
     today: "",
     inTheaters: {
@@ -34,19 +34,47 @@ Page({
     air: '',
     dress: ''
   },
-
+  //子组件自定义事件
+  hanlerItemChange(e){
+    console.log('父组件收到的数据',e)
+    let {index} = e.detail
+    let {items} = this.data
+    items.forEach((v,i)=>i===index?v.active=true:v.active=false)
+  },
   onLoad: function (options) {
+   
     //更新当前日期
     app.globalData.day = util.formatTime(new Date()).split(' ')[0];
     this.setData({
       today: app.globalData.day
     });
     //定位当前城市
-    this.getLocation();
-    //获取豆瓣电影正在热映信息 已下架
-    // var inTheatersUrl = app.globalData.doubanBase +
-    //   "/v2/movie/in_theaters" + "?start=0&count=6";
-    // this.getMovieListData(inTheatersUrl, "inTheaters", "正在热映");
+     /**
+     * 缓存
+     * 一定时间内不用重新请求
+     */
+    const Cates = wx.getStorageSync("cates")
+    if(!Cates){
+      //不存在重新请求
+      this.getLocation()
+      //到getLocation方法体中保存
+    }else{
+      //有储存判断时间定义10s
+      if(Date.now()-Cates.time>1000*30){
+        console.log("缓存数据超时30S")
+        this.getLocation()
+      }else{
+        console.log("我是缓存数据")
+        app.globalData.defaultCity = Cates.data.ad_info.city;
+        app.globalData.defaultCounty = Cates.data.ad_info.district;
+        this.setData({
+          location: app.globalData.defaultCity,
+          county: app.globalData.defaultCounty
+        });
+        this.getWeather();
+        this.getAir();
+      }
+    }
 
     //获取用户信息
     wx.getUserInfo({
@@ -71,26 +99,18 @@ Page({
         //当前的经度和纬度
         let latitude = res.latitude
         let longitude = res.longitude
-        // wx.request({
-        //   url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`,
-        //   success: res => {
-        //     app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.data.result.ad_info.city;
-        //     app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.data.result.ad_info.district;
-        //     that.setData({
-        //       location: app.globalData.defaultCity,
-        //       county: app.globalData.defaultCounty
-        //     });
-        //     that.getWeather();
-        //     that.getAir();
-        //   }
-        // })
-        api.gets( `${app.globalData.apiMap}/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`, {}).then(res=>{
-          app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.result.ad_info.city;
+
+        api.gets(`${app.globalData.apiMap}/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`, {}).then(res=>{
+            //不存在类型转换 存什么类型获取时候什么类型不必序列化
+            wx.setStorageSync('cates', {time:Date.now(), data:res.result})
+            console.log("已经缓存数据")
+            app.globalData.defaultCity = app.globalData.defaultCity ? app.globalData.defaultCity:res.result.ad_info.city;
             app.globalData.defaultCounty = app.globalData.defaultCounty ? app.globalData.defaultCounty :res.result.ad_info.district;
             that.setData({
               location: app.globalData.defaultCity,
               county: app.globalData.defaultCounty
             });
+            
             that.getWeather();
             that.getAir();
         }).catch(err=>{
@@ -112,7 +132,6 @@ Page({
       location: city
     };
     //发出请求
-    
     wx.request({
       url: app.globalData.heWeatherBase + "/s6/weather",
       data: param,

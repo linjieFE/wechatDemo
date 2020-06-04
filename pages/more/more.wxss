@@ -14,7 +14,6 @@
 .more_container{ 
     height: 320px; 
     border: 2rpx solid #2a579a;
-    border-radius: 10px;
     margin-left: 10rpx;
     margin-right: 10rpx;
     padding: 10rpx 10rpx;
@@ -41,8 +40,7 @@
   margin-left: 65rpx;
 }
 .moreSelected{
-  border: 1px #2a579a solid;
-  border-radius: 50%;
+  border-bottom: 1px #2a579a solid;
 }
 .conImage{
   width: 320px;
