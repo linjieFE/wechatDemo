@@ -10,6 +10,7 @@ Page({
   onLoad: function (options) {
     var that = this
     // 访问聚合数据的网络接口-头条新闻
+    api.post
     wx.request({
       url: app.globalData.juhetoutiaoBase,
       data: {

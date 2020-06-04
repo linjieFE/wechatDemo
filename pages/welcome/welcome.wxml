@@ -2,7 +2,15 @@
   <view  bindtap="clickLogo" class="userinfo" >
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    <view class="usermotto"  hover-class="hover">{{motto}}</view>
+    <view class="usermotto" hover-class="hover"
+      catchlongtap="mylongtap"
+      catchtap="mytap" 
+      catchlongpress="mylongtap" 
+      catchtouchstart="mytouchstart"
+      catchtouchmove="mytouchmove" 
+      catchtouchcancel="mytouchcacel">
+      {{motto}}
+    </view>
 
     <van-row type="flex" gutter="20" justify="center">
       <van-col span="12">

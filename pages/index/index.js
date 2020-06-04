@@ -25,6 +25,10 @@ Page({
     inTheaters: {
       stars:[
         { score:'0'},
+        { score:'0'},
+        { score:'0'},
+        { score:'0'},
+        { score:'0'},
         { score:'0'}
       ],
       score:'0'
@@ -99,7 +103,6 @@ Page({
         //当前的经度和纬度
         let latitude = res.latitude
         let longitude = res.longitude
-
         api.gets(`${app.globalData.apiMap}/ws/geocoder/v1/?location=${latitude},${longitude}&key=${app.globalData.tencentMapKey}`, {}).then(res=>{
             //不存在类型转换 存什么类型获取时候什么类型不必序列化
             wx.setStorageSync('cates', {time:Date.now(), data:res.result})

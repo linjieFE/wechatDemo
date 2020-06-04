@@ -1,3 +1,4 @@
+var api = require('../../assets/js/api')
 Page({
   data: {
     selsectState: [0, 0, 0, 0, 0],
