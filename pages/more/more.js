@@ -46,7 +46,7 @@ Page({
       itemColor: "#405f80",
       success: function (res) {
         wx.navigateTo({
-          url: '../logs/logs'
+          url: '../welcome/welcome'
         });
       }
     })
@@ -66,7 +66,43 @@ Page({
       selectIndex: 5
     });
   },
+  onReady:function(){
+    var context = wx.createContext()
 
+    //缩放
+    context.rect(5, 5, 30, 30)
+    context.stroke()
+    context.scale(2,2)
+    context.stroke()
+    context.scale(2,2)
+    context.stroke()
+    wx.drawCanvas({
+      canvasId: 'canvas_scale',
+      actions: context.getActions()
+    })
+    context.clearActions()
+
+    //旋转
+    context.rect(30, 30, 100, 100)
+    context.stroke()
+    context.rotate(0.15)
+    context.stroke()
+    wx.drawCanvas({
+      canvasId: 'canvas_rotate',
+      actions: context.getActions()
+    })
+    context.clearActions()
+    
+    //平移
+    context.rect(30, 30, 100, 100)
+    context.stroke()
+    context.translate(10, 10)
+    context.stroke()
+     wx.drawCanvas({
+      canvasId: 'canvas_translate',
+      actions: context.getActions()
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: '期待更多功能~',
