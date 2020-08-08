@@ -1,0 +1,146 @@
+<view class="container">
+  <van-sticky z-index="-1">
+    <view  class="heade">
+        <van-row>
+          <van-col span="12" bindTap="toOrder">
+            <view>{{userInfo.nickName}}</view>
+            <view class="count" >
+             订餐次数：{{count}}
+              <van-icon name="arrow" />
+            </view>
+          </van-col>
+          <!-- logo图标 -->
+          <van-col span="12" class="message" bindtap="showSignOut">
+            <van-image round width="55px" height="55px" src="http://img.weitoolsbox.com/head.jpeg" />
+          </van-col>
+        </van-row>
+    </view>
+  </van-sticky>
+
+  <view class="body" >
+    <van-row style="margin:10rpx；height:100rpx" gutter="10">
+     <!-- 联系客服 -->
+      <van-col span="12">
+        <view class="add" wx:if="{{showBusiness}}" bindtap="toBusiness">
+          <van-icon name="service-o" />
+        </view>
+      </van-col>
+      <!-- 记录 -->
+      <van-col span="12">
+        <view class="add" 
+            wx:if="{{showBusiness}}" bindtap="toEdit">
+            <van-icon name="records" />
+        </view>
+      </van-col>
+    </van-row>
+     <!-- 增加图标 -->
+    <view 
+      class="add" 
+      style="margin:10px" 
+      wx:if="{{showAdd}}" 
+      bindtap="onAdd">
+          <van-icon name="plus" />
+    </view>
+    <!-- if 没有菜单数据 -->
+        <view  wx:if="{{list.length<= 0}}" class="listNull">
+          <svg class="font-icon" aria-hidden="true">
+            <use xlink:href="#icon-ic_content_null"></use>
+          </svg>
+        </view>
+    <!-- if 有菜单数据 -->
+        <view class="list"
+          wx:for="{{list}}"  
+          wx:key="{{index}}"     
+          bindtop="toMenu(item)">
+          <view class="list-heade">
+            <van-image class="left" width="50px" height="50px" :src="item.groupCover" />
+            <view class="right">
+                <view class="name">{{item.groupName}}</view>
+                <view class="user-name">预计送达:
+                  <text class="time">{{item.endTime}}</text>
+                  <text class="count">参团数:{{item.joinCount}}</text>
+                </view>
+            </view>
+          </view>
+          <van-row class="list-bottom">
+              <van-col span="18">
+                <view>
+                  截止时间：{{item.endTime}}
+                </view>
+              </van-col>
+              <van-col class="list-bottom-right" span="6">
+                <view style="color:#52c41a">正在点餐</view>
+              </van-col>
+            </van-row>
+          </view>
+        </view>
+
+        <!-- 底部抽屉 - 发起拼团 -->
+        <action-sheet hidden="{{assemble}}">
+          <view class="content">
+              <form catchsubmit="formSubmit" catchreset="formReset">
+                <view class="page-section">
+                  <view class="page-section-title">拼团名字</view>
+                  <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_input">
+                      <view class="weui-cell__bd" style="margin: 30rpx 0" >
+                        <input class="weui-input" name="name" placeholder="请填写名字" />
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="submit">
+                  <van-button round block 
+                  bindtap="onSubmit" 
+                  type="info" 
+                  native-type="submit">
+                    发起拼团
+                  </van-button>
+                </view>
+              </form>
+    
+
+          </view>
+        </action-sheet>
+
+
+
+
+
+
+        <!-- <van-actionsheet wx:if="{{assemble}}" ref="assemble" title="拼团" :close-on-click-overlay="false">
+          <view class="content">
+            <van-field wx:if="{{name}}" name="name" label="拼团名字" placeholder="请填写名字"
+              :rules="[{ required:true, message: '名字不能为空' }]" />
+            <van-field readonly clickable name="workplace" :value="workplace" label="选择职场" placeholder="请选择选择供应商"
+              bindtap="workplacePicker = true" :rules="[{required:true, message: '职场不能为空' }]" />
+            <van-field readonly clickable name="supplier" :value="supplier" label="选择供应商" placeholder="请选择选择供应商"
+              bindtap="supplierPicker = true" :rules="[{required:true, message: '供应商不能为空' }]" />
+            <van-field readonly clickable name="startTime" :value="startTime" label="选择开始时间" placeholder="请选择开始时间"
+              bindtap="timePicker('startTime')" :rules="[{required:true, message: '开始时间不能为空' }]" />
+            <van-field readonly clickable name="endTime" :value="endTime" label="选择结束时间" placeholder="请选择结束时间"
+              bindtap="timePicker('endTime')" :rules="[{required:true, message: '结束时间不能为空' }]" />
+            <view class="submit">
+              <van-button round block 
+              bindtap="onSubmit" 
+              type="info" 
+              native-type="submit">
+                发起拼团
+              </van-button>
+            </view>
+
+          </view>
+        </van-actionsheet>
+         <van-popup wx:if="{{timePickerStatus}}" position="bottom">
+            <van-datetime-picker :min-date='new Date()' type="datetime"       bindtap="onTimeConfirm"
+              bindtap="timePickerStatus = false" />
+          </van-popup>
+          <van-popup wx:if="{{supplierPicker}}" position="bottom">
+            <van-picker show-toolbar :columns="columns" bindtap="onSupplierConfirm" value-key="supplierName"
+              bindtap="supplierPicker = false" />
+          </van-popup>
+          <van-popup wx:if="{{workplacePicker}}" position="bottom">
+            <van-picker show-toolbar :columns="workplaceColumns" value-key="businessBuildName" bindtap="onWorkplaceConfirm"
+              bindtap="workplacePicker = false" />
+          </van-popup> -->
+</view>

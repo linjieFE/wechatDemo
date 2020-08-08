@@ -35,6 +35,17 @@ App({
   // globalData是定义整个项目的全局变量或者常量
   globalData: {
     userInfo:null,
+    user: {
+      tel: '',
+      id: '',
+      userName: '',
+      nickName: '',
+      sex: '',
+      headimgurl: '',
+      userRole: [
+        {roleCode:"group"}
+      ]
+    },
     host:'https://localhost:8443/test-weappservice/api/v1',
     // server: 'https://localhost:8443/weappservice/api/v1',
     appId: 'wxf7403466434f62ee',

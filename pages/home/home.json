@@ -1,0 +1,15 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-icon":"@vant/weapp/icon/index",
+    "van-sticky":"@vant/weapp/sticky/index",
+    "van-action-sheet":"@vant/weapp/action-sheet/index",
+    "van-field":"@vant/weapp/field/index",
+    "van-popup":"@vant/weapp/popup/index",
+    "van-picker":"@vant/weapp/picker/index"
+  }
+}
